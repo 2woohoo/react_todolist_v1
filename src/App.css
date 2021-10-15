@@ -1,38 +1,122 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&family=Roboto+Condensed&display=swap');
+
+:root {
+  --purple: #bb94e3;
+  --dark-purple: #b88ae8;
+  --dark-olive: #1a281f;
+  --light-olive: #5e6862;
+}
+
+/* ***** General ***** */
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  color: var(--dark-purple);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2rem;
+  padding: 0.5rem 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: var(--dark-olive);
+  padding: 0.5rem 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.font-main {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.add-card,
+.todo-card {
+  width: 75vw;
+  max-width: 300px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  margin: 1.5rem auto;
+  padding: 1.25rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.add-card {
+  background-color: var(--purple);
   color: white;
+  display: flex;
 }
 
-.App-link {
-  color: #61dafb;
+.add-card input,
+.add-card textarea,
+.add-card button {
+  justify-self: center;
+  width: 75vw;
+  max-width: 300px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0;
+  margin-top: 0.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-card button {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.add-card ::placeholder {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: white;
+  opacity: 0.7;
+}
+
+#titleInput {
+  font-size: 1rem;
+}
+
+#textInput {
+  font: 0.75rem;
+}
+
+.todo-card {
+  color: var(--light-olive);
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  width: 85%;
+}
+
+.content h3,
+.content p,
+.todo-card input {
+  margin: 0.5rem 0 0 0;
+}
+
+input[type='checkbox'] {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--purple);
+  border: 1px solid var(--purple);
+  border-radius: 4px;
+  appearance: none;
+  cursor: pointer;
+  /* transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1); */
+}
+
+input[type='checkbox']:checked {
+  color: white;
+  border-color: var(--purple);
+  background: var(--purple);
+}
+
+input[type='checkbox']:checked::before {
+  opacity: 1;
 }
