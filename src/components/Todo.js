@@ -1,23 +1,34 @@
 import React from 'react';
 
-const Todo = () => {
+const Todo = ({ title, text, key, todo, todos, setTodos }) => {
+  const completeHandler = () => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return { ...item, completed: !item.completed };
+        }
+        return item;
+      })
+    );
+  };
+  const deleteHandler = () => {
+    setTodos(todos.filter((el) => el.id !== todo.id));
+  };
   return (
     <div className="todo-card">
       <div className="content">
-        <h3>Do laundry</h3>
-        <p>
-          Light only
-          <br />
-          llllll
-        </p>
+        <div className={`inputs ${todo.completed ? 'completed' : ''}`}>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </div>
+        <form action="">
+          <input onChange={completeHandler} type="checkbox" />
+        </form>
       </div>
-      <form action="">
-        <input type="checkbox" />
-      </form>
-      {/* <div className="btns">
+      <div className="btns">
         <i class="fas fa-pen"></i>
-        <i class="fas fa-trash"></i>
-      </div> */}
+        <i onClick={deleteHandler} class="fas fa-trash"></i>
+      </div>
     </div>
   );
 };
