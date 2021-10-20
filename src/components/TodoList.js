@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import components
 import AddForm from './AddForm';
 import Todo from './Todo';
@@ -10,10 +10,42 @@ const TodoList = ({
   setInputText,
   todos,
   setTodos,
+  status,
+  setStatus,
+  filteredTodos,
+  setFilteredTodos,
 }) => {
+  const statusHandler = (e) => {
+    setStatus(e.target.value);
+  };
+
+  const filterHandler = () => {
+    switch (status) {
+      case 'done':
+        setFilteredTodos(todos.filter((todo) => todo.completed === true));
+        break;
+      case 'todo':
+        setFilteredTodos(todos.filter((todo) => todo.completed === false));
+        break;
+      default:
+        setFilteredTodos(todos);
+        break;
+    }
+  };
+
+  useEffect(() => {
+    filterHandler();
+  }, [todos, status]);
+
   return (
-    <div>
-      <h2>TODO</h2>
+    <main>
+      <div className="status">
+        <select onChange={statusHandler} name="status" className="statusFilter">
+          <option value="all">All</option>
+          <option value="done">Done</option>
+          <option value="todo">Todo</option>
+        </select>
+      </div>
       <AddForm
         inputText={inputText}
         inputTitle={inputTitle}
@@ -22,7 +54,7 @@ const TodoList = ({
         todos={todos}
         setTodos={setTodos}
       />
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <Todo
           title={todo.title}
           text={todo.text}
@@ -32,7 +64,7 @@ const TodoList = ({
           setTodos={setTodos}
         />
       ))}
-    </div>
+    </main>
   );
 };
 

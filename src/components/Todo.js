@@ -22,7 +22,7 @@ const Todo = ({ title, text, key, todo, todos, setTodos }) => {
           <p>{text}</p>
         </div>
         <form action="">
-          <input onChange={completeHandler} type="checkbox" />
+          <input onClick={completeHandler} type="checkbox" />
         </form>
       </div>
       <div className="btns">

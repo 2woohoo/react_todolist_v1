@@ -8,6 +8,8 @@ function App() {
   const [inputTitle, setInputTitle] = useState('');
   const [inputText, setInputText] = useState('');
   const [todos, setTodos] = useState([]);
+  const [status, setStatus] = useState('all');
+  const [filteredTodos, setFilteredTodos] = useState([]);
 
   // Local Storage
   const saveLocalData = () => {
@@ -23,11 +25,12 @@ function App() {
     }
   };
 
-  // Use Effects
+  // Run ONCE when the app start
   useEffect(() => {
     getLocalData();
   }, []);
 
+  // Use Effect
   useEffect(() => {
     saveLocalData();
   });
@@ -44,6 +47,10 @@ function App() {
           setInputTitle={setInputTitle}
           todos={todos}
           setTodos={setTodos}
+          status={status}
+          setStatus={setStatus}
+          filteredTodos={filteredTodos}
+          setFilteredTodos={setFilteredTodos}
         />
       </main>
     </div>
