@@ -10,6 +10,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Local Storage
   const saveLocalData = () => {
@@ -39,7 +40,7 @@ function App() {
     <div className="App">
       <header>Ease Do</header>
       <main className="font-main">
-        <Search />
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <TodoList
           inputText={inputText}
           setInputText={setInputText}
@@ -51,6 +52,7 @@ function App() {
           setStatus={setStatus}
           filteredTodos={filteredTodos}
           setFilteredTodos={setFilteredTodos}
+          searchTerm={searchTerm}
         />
       </main>
     </div>

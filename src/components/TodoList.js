@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // import components
 import AddForm from './AddForm';
 import Todo from './Todo';
@@ -14,6 +14,7 @@ const TodoList = ({
   setStatus,
   filteredTodos,
   setFilteredTodos,
+  searchTerm,
 }) => {
   const statusHandler = (e) => {
     setStatus(e.target.value);
@@ -54,16 +55,27 @@ const TodoList = ({
         todos={todos}
         setTodos={setTodos}
       />
-      {filteredTodos.map((todo) => (
-        <Todo
-          title={todo.title}
-          text={todo.text}
-          key={todo.id}
-          todo={todo}
-          todos={todos}
-          setTodos={setTodos}
-        />
-      ))}
+      {filteredTodos
+        .filter((val) => {
+          if (searchTerm === '') {
+            return val;
+          } else if (
+            val.title.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            // console.log('TEST!!:', val);
+            return val;
+          }
+        })
+        .map((todo) => (
+          <Todo
+            title={todo.title}
+            text={todo.text}
+            key={todo.id}
+            todo={todo}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        ))}
     </main>
   );
 };

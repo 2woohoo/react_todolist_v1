@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Todo = ({ title, text, key, todo, todos, setTodos }) => {
+const Todo = ({ title, text, todo, todos, setTodos }) => {
   const completeHandler = () => {
     setTodos(
       todos.map((item) => {
@@ -26,8 +26,8 @@ const Todo = ({ title, text, key, todo, todos, setTodos }) => {
         </form>
       </div>
       <div className="btns">
-        <i class="fas fa-pen"></i>
-        <i onClick={deleteHandler} class="fas fa-trash"></i>
+        <i className="fas fa-pen"></i>
+        <i onClick={deleteHandler} className="fas fa-trash"></i>
       </div>
     </div>
   );
